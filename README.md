@@ -848,3 +848,24 @@ This platform incorporates several production-inspired engineering practices:
 - Centralized Ingress Routing
 
 These capabilities collectively provide a strong foundation for cloud-native application deployment and are designed to be extended with CI/CD automation, GitOps workflows, and cloud infrastructure provisioning.
+# 🏗️ Project Architecture
+
+The Self-Healing GitOps Platform follows a cloud-native microservices architecture built with Kubernetes, GitOps, monitoring, and automated self-healing.
+
+## Architecture Diagram
+
+<img width="1536" height="1024" alt="00-architecture-diagram" src="https://github.com/user-attachments/assets/2b60624e-fa99-47fa-9447-4c48d8fec25a" />
+
+
+### Architecture Highlights
+
+- 🌐 NGINX Ingress routes external traffic to microservices.
+- 👤 User Service manages user-related APIs.
+- 📦 Product Service manages product-related APIs.
+- 🐘 PostgreSQL provides persistent database storage.
+- ☸️ Kubernetes orchestrates and manages containers.
+- 📊 Prometheus collects application and cluster metrics.
+- 📈 Grafana visualizes metrics with real-time dashboards.
+- 🚨 Alertmanager handles alert routing and notifications.
+- 🔄 GitHub + GitOps continuously synchronize Kubernetes manifests.
+- ♻️ Kubernetes automatically recreates failed pods for self-healing.

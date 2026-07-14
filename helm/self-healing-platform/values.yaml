@@ -1,0 +1,69 @@
+userService:
+  name: user-service
+
+  replicaCount: 2
+
+  image:
+    repository: user-service
+    tag: v1
+    pullPolicy: Never
+
+  containerPort: 8000
+
+  appName: "User Service"
+
+  service:
+    type: ClusterIP
+    port: 8000
+
+productService:
+  name: product-service
+
+  replicaCount: 2
+
+  image:
+    repository: product-service
+    tag: v1
+    pullPolicy: Never
+
+  containerPort: 8000
+
+  appName: "Product Service"
+
+  service:
+    type: ClusterIP
+    port: 8000
+
+postgres:
+  name: postgres
+
+  image:
+    repository: postgres
+    tag: "17"
+    pullPolicy: IfNotPresent
+
+  containerPort: 5432
+
+  database: ecommerce
+
+  username: postgres
+
+  password: postgres
+
+  service:
+    type: ClusterIP
+    port: 5432
+
+config:
+  appVersion: "1.0.0"
+  environment: "development"
+
+secret:
+  databaseUrl: "postgresql://admin:admin123@postgres-service:5432/userdb"
+
+ingress:
+  className: nginx
+
+  userPath: /users
+
+  productPath: /products

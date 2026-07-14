@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ .Values.productService.name }}
+
+spec:
+  replicas: {{ .Values.productService.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: {{ .Values.productService.name }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.productService.name }}
+
+    spec:
+      containers:
+        - name: {{ .Values.productService.name }}
+
+          image: "{{ .Values.productService.image.repository }}:{{ .Values.productService.image.tag }}"
+
+          imagePullPolicy: {{ .Values.productService.image.pullPolicy }}
+
+          ports:
+            - containerPort: {{ .Values.productService.containerPort }}
+
+          env:
+            - name: APP_NAME
+              value: "{{ .Values.productService.appName }}"
+
+            - name: APP_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: APP_VERSION
+
+            - name: ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: ENVIRONMENT
+
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app-secret
+                  key: DATABASE_URL

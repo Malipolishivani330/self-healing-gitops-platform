@@ -1,40 +1,52 @@
-# 🚀 Production-Ready Cloud-Native Self-Healing GitOps Platform
+# 🚀 Production-Ready Cloud-Native Self-Healing GitOps Platform with Helm
 
-> A production-inspired cloud-native microservices platform built using **FastAPI, Docker, Kubernetes, PostgreSQL, Prometheus, and Grafana**, demonstrating containerized application deployment, Kubernetes orchestration, self-healing capabilities, observability, and a GitOps-ready architecture.
+> A production-inspired cloud-native microservices platform built using **FastAPI, Docker, Kubernetes, Helm, PostgreSQL, Prometheus, Grafana, GitHub Actions, and Argo CD**, demonstrating containerized application deployment, Kubernetes orchestration, Helm-based application packaging, self-healing capabilities, observability, and GitOps-driven deployment.
 
 ---
 
-## 📖 Project Overview
+# 📖 Project Overview
 
-Modern cloud-native applications demand **high availability, scalability, resiliency, and observability**. Managing these applications manually becomes increasingly difficult as systems grow in complexity.
+Modern cloud-native applications require **high availability, scalability, resiliency, automation, and observability**. Managing distributed applications manually becomes increasingly difficult as systems grow in complexity.
 
-This project demonstrates how to build and deploy a **production-inspired microservices platform** by leveraging modern cloud-native technologies and Kubernetes best practices.
+This project demonstrates how to build, package, deploy, and monitor a **production-inspired cloud-native microservices platform** using modern DevOps and Kubernetes technologies.
 
-The platform is designed around independent microservices, each running in its own container and orchestrated by Kubernetes. It includes automated service discovery, centralized configuration management, monitoring, self-healing deployments, and production-style infrastructure components.
+The platform consists of independent FastAPI microservices running in Docker containers and orchestrated by Kubernetes. Kubernetes provides service discovery, scaling, networking, and self-healing, while Helm packages the application into reusable deployment templates. GitHub Actions provides CI automation, Argo CD enables GitOps-ready deployments, and Prometheus with Grafana deliver observability and monitoring.
 
-Unlike traditional monolithic applications, every service can be independently deployed, scaled, monitored, and recovered without affecting other services.
+Each microservice can be independently deployed, monitored, scaled, and recovered without impacting other services.
 
 The project demonstrates practical implementation of:
 
-- Containerized Microservices
+- Cloud-Native Microservices
+- Docker Containerization
+- Docker Compose
 - Kubernetes Orchestration
+- Helm Package Management
 - Kubernetes Self-Healing
 - Service Discovery
 - Configuration Management
-- Secrets Management
-- Ingress Routing
+- Kubernetes Secrets
+- NGINX Ingress Routing
+- GitHub Actions CI
+- GitOps Architecture
 - Monitoring & Observability
 - Production Deployment Practices
-- GitOps-Ready Architecture
-
-This project is intended to simulate how modern applications are deployed in production Kubernetes environments while following cloud engineering best practices.
 
 ---
 
 # 🏗️ Solution Architecture
 
-```
+```text
                           Developer
+
+                              │
+                              ▼
+
+                     GitHub Repository
+
+                              │
+                              ▼
+
+                    GitHub Actions (CI)
 
                               │
                               ▼
@@ -44,63 +56,67 @@ This project is intended to simulate how modern applications are deployed in pro
                               │
                               ▼
 
-                    Docker Compose (Local)
+                       Docker Compose
+
+                              │
+                              ▼
+
+                         Helm Charts
 
                               │
                               ▼
 
                      Kubernetes Cluster
 
-         ┌─────────────────────────────────────┐
-         │                                     │
-         │      Kubernetes Control Plane       │
-         │                                     │
-         └─────────────────────────────────────┘
+        ┌──────────────────────────────────────┐
+        │                                      │
+        │      Kubernetes Control Plane        │
+        │                                      │
+        └──────────────────────────────────────┘
 
                 │                     │
 
                 ▼                     ▼
 
-      User Service             Product Service
+        User Service          Product Service
 
                 │                     │
 
-                └──────────┬──────────┘
+                └───────────┬──────────┘
 
-                           ▼
+                            ▼
 
                      PostgreSQL Database
 
-                           │
+                            │
 
-                           ▼
+                            ▼
 
-                ConfigMap & Kubernetes Secrets
+              ConfigMap & Kubernetes Secrets
 
-                           │
+                            │
 
-                           ▼
+                            ▼
 
-                    Kubernetes Services
+                   Kubernetes Services
 
-                           │
+                            │
 
-                           ▼
+                            ▼
 
-                    NGINX Ingress Controller
+                 NGINX Ingress Controller
 
-                           │
+                            │
 
-                           ▼
+                            ▼
 
                     Prometheus Monitoring
 
-                           │
+                            │
 
-                           ▼
+                            ▼
 
-                     Grafana Dashboards
-
+                    Grafana Dashboards
 ```
 
 ---
@@ -111,9 +127,9 @@ This project is intended to simulate how modern applications are deployed in pro
 
 - Independent User Service
 - Independent Product Service
-- RESTful API architecture
+- RESTful APIs
 - FastAPI framework
-- Modular project structure
+- Modular architecture
 
 ---
 
@@ -132,14 +148,38 @@ This project is intended to simulate how modern applications are deployed in pro
 - ReplicaSets
 - ClusterIP Services
 - ConfigMaps
-- Secrets
-- Ingress Controller
+- Kubernetes Secrets
+- NGINX Ingress
+
+---
+
+## ✅ Helm Package Management
+
+- Reusable Helm Charts
+- Configurable deployments using values.yaml
+- Helm templating
+- Helm install
+- Helm upgrade
+- Helm rollback
+
+---
+
+## ✅ Continuous Integration
+
+GitHub Actions automates project validation.
+
+Current workflow includes:
+
+- Source code checkout
+- Python environment setup
+- Dependency installation
+- CI workflow execution
 
 ---
 
 ## ✅ High Availability
 
-Multiple application replicas ensure higher availability and fault tolerance.
+Multiple replicas provide high availability and fault tolerance.
 
 Example:
 
@@ -150,13 +190,11 @@ Example:
 
 ## ✅ Self-Healing
 
-If a running pod becomes unavailable or is manually deleted:
+If a running Pod is deleted or fails:
 
-- Kubernetes automatically detects the failure
-- A replacement pod is scheduled
-- Desired replica count is restored automatically
-
-This demonstrates Kubernetes' built-in self-healing capability.
+- Kubernetes detects the failure
+- Automatically creates a replacement Pod
+- Maintains the desired replica count
 
 ---
 
@@ -174,15 +212,15 @@ Application monitoring is implemented using:
 
 ## ✅ Production-Oriented Design
 
-The platform is designed following production-inspired architecture principles including:
+The platform follows production-inspired engineering practices:
 
 - Stateless Microservices
-- Service Isolation
 - Independent Scaling
-- Environment Configuration
+- Service Isolation
+- Configuration Management
 - Infrastructure Separation
-- Observability
 - Declarative Kubernetes Resources
+- GitOps-ready architecture
 
 ---
 
@@ -197,6 +235,9 @@ The platform is designed following production-inspired architecture principles i
 | Containerization | Docker |
 | Multi-Container | Docker Compose |
 | Container Orchestration | Kubernetes (Kind) |
+| Package Management | Helm |
+| CI | GitHub Actions |
+| GitOps | Argo CD |
 | Networking | Kubernetes Services, NGINX Ingress |
 | Configuration | ConfigMap |
 | Secret Management | Kubernetes Secrets |
@@ -214,6 +255,15 @@ self-healing-gitops-platform/
 
 ├── .github/
 │   └── workflows/
+│       └── ci.yml
+│
+├── docs/
+│
+├── helm/
+│   └── self-healing-platform/
+│       ├── Chart.yaml
+│       ├── values.yaml
+│       └── templates/
 │
 ├── k8s/
 │   ├── config/
@@ -225,16 +275,7 @@ self-healing-gitops-platform/
 │
 ├── services/
 │   ├── user-service/
-│   │   ├── app/
-│   │   ├── Dockerfile
-│   │   ├── requirements.txt
-│   │   └── .env
-│   │
 │   └── product-service/
-│       ├── app/
-│       ├── Dockerfile
-│       ├── requirements.txt
-│       └── .env
 │
 ├── docker-compose.yml
 ├── .gitignore
@@ -243,11 +284,9 @@ self-healing-gitops-platform/
 
 ---
 
-# ⚙️ Architecture Workflow
+# ⚙️ Application Workflow
 
-The complete request flow of the application is illustrated below.
-
-```
+```text
 Client Request
 
       │
@@ -285,91 +324,83 @@ PostgreSQL Database
       ▼
 
 Response Returned
-
-```
-
-At the infrastructure level:
-
-```
-Developer
-
-     │
-
-     ▼
-
-Git Repository
-
-     │
-
-     ▼
-
-Docker Build
-
-     │
-
-     ▼
-
-Docker Images
-
-     │
-
-     ▼
-
-Kubernetes Deployment
-
-     │
-
-     ▼
-
-Pods
-
-     │
-
-     ▼
-
-Services
-
-     │
-
-     ▼
-
-Ingress
-
-     │
-
-     ▼
-
-Prometheus
-
-     │
-
-     ▼
-
-Grafana Dashboards
-
 ```
 
 ---
 
-## 🎯 Project Objectives
+# 🚀 Helm Deployment
 
-This project was built to gain hands-on experience with modern cloud-native technologies and production deployment workflows.
+The Kubernetes manifests have been packaged into reusable Helm Charts.
+
+### Validate Helm Chart
+
+```bash
+helm lint helm/self-healing-platform
+```
+
+### Render Templates
+
+```bash
+helm template self-healing helm/self-healing-platform
+```
+
+### Install
+
+```bash
+helm install self-healing helm/self-healing-platform
+```
+
+### Upgrade
+
+```bash
+helm upgrade self-healing helm/self-healing-platform
+```
+
+### Rollback
+
+```bash
+helm rollback self-healing 1
+```
+
+---
+
+# 🎯 Project Objectives
 
 The primary objectives include:
 
-- Designing containerized microservices
-- Deploying applications using Kubernetes
-- Implementing service discovery and networking
-- Managing application configuration using ConfigMaps and Secrets
-- Demonstrating Kubernetes self-healing capabilities
-- Monitoring workloads with Prometheus and Grafana
-- Building a GitOps-ready architecture for future CI/CD automation
-- Following production-inspired engineering practices suitable for cloud environments
-- ---
+- Designing cloud-native microservices
+- Building Docker containers
+- Deploying workloads on Kubernetes
+- Packaging applications using Helm
+- Managing configuration using ConfigMaps
+- Managing secrets using Kubernetes Secrets
+- Implementing Kubernetes self-healing
+- Monitoring applications using Prometheus and Grafana
+- Automating CI with GitHub Actions
+- Building a GitOps-ready deployment architecture
+- Following production-inspired cloud engineering practices
 
+---
+
+# 📚 Key Learnings
+
+Through this project, I gained hands-on experience in:
+
+- Cloud-native application architecture
+- FastAPI microservices development
+- Docker containerization
+- Kubernetes deployments
+- Kubernetes networking
+- Kubernetes self-healing
+- Helm chart development
+- GitHub Actions CI
+- GitOps concepts with Argo CD
+- Monitoring using Prometheus
+- Dashboard creation using Grafana
+- Production-oriented Kubernetes deployment workflows
 # 🐳 Docker Implementation
 
-Containerization is the foundation of this platform. Each microservice is independently packaged into lightweight Docker images, ensuring consistency across development and deployment environments.
+Containerization is the foundation of this platform. Each microservice is independently packaged into lightweight Docker images, ensuring consistency across development, testing, and Kubernetes deployments.
 
 ## Why Docker?
 
@@ -377,8 +408,9 @@ Docker provides:
 
 - Consistent runtime environment
 - Dependency isolation
+- Lightweight containers
 - Faster deployments
-- Easy scalability
+- Simplified scaling
 - Production-ready packaging
 - Platform independence
 
@@ -398,7 +430,7 @@ The following services are containerized:
 
 ## Docker Build Workflow
 
-```
+```text
 Application Source Code
 
         │
@@ -436,23 +468,24 @@ Application Running
 
 ## Docker Images
 
-The project builds independent Docker images for:
+Independent Docker images were created for:
 
 - User Service
 - Product Service
 
 Each image contains:
 
-- FastAPI Application
-- Python Runtime
-- Required Dependencies
-- Environment Configuration
+- FastAPI application
+- Python runtime
+- Required dependencies
+- Environment configuration
+- Production-ready startup command
 
 ---
 
 ## Multi-Container Deployment
 
-Docker Compose was used to orchestrate multiple containers during local development.
+Docker Compose was used during local development to orchestrate multiple services.
 
 Services include:
 
@@ -462,18 +495,18 @@ Services include:
 
 Benefits:
 
-- Service networking
-- Simplified development
-- Faster testing
+- Simplified local development
+- Automatic service networking
+- Consistent development environment
 - Centralized container management
 
 ---
 
-# ☸️ Kubernetes Deployment
+# ☸️ Kubernetes & Helm Deployment
 
-After validating the application using Docker Compose, the platform was migrated to Kubernetes for orchestration.
+After validating the application with Docker Compose, the platform was deployed on Kubernetes and packaged using Helm.
 
-Each application component was deployed as an independent Kubernetes workload.
+Helm enables reusable, configurable, and repeatable Kubernetes deployments by converting static Kubernetes manifests into reusable templates.
 
 ---
 
@@ -486,6 +519,7 @@ Deployments manage:
 - Pod lifecycle
 - Replica management
 - Rolling updates
+- Self-healing
 - Automatic recovery
 
 Implemented Deployments:
@@ -498,11 +532,11 @@ Implemented Deployments:
 
 ### ReplicaSets
 
-ReplicaSets ensure the desired number of application replicas remain available.
+ReplicaSets ensure that the desired number of application replicas remain available.
 
 Example:
 
-```
+```text
 Desired Replicas = 2
 
 Running Pods = 2
@@ -528,7 +562,7 @@ Running Pods = 2
 
 ### Services
 
-ClusterIP Services provide internal communication between workloads.
+ClusterIP Services provide internal communication between Kubernetes workloads.
 
 Implemented Services:
 
@@ -540,43 +574,66 @@ Responsibilities:
 
 - Service discovery
 - Internal networking
-- Load balancing across replicas
+- Load balancing
+- Stable service endpoints
 
 ---
 
 ### ConfigMap
 
-Application configuration is externalized using ConfigMaps.
+Application configuration is externalized using Kubernetes ConfigMaps.
 
-Examples include:
+Configuration includes:
 
-- Application Name
+- Application Version
 - Environment
-- Version
-- Database Host
+- Runtime configuration
 
 Benefits:
 
 - Environment separation
 - Easy configuration updates
-- Improved maintainability
+- Better maintainability
 
 ---
 
-### Secrets
+### Kubernetes Secrets
 
-Sensitive configuration is securely managed using Kubernetes Secrets.
+Sensitive application configuration is securely stored using Kubernetes Secrets.
 
-Examples:
+Current Secret:
 
-- Database Username
-- Database Password
+- DATABASE_URL
 
 Benefits:
 
-- Secure credential management
-- Separation of configuration from code
+- Sensitive data isolation
+- Secure configuration management
 - Production best practice
+
+---
+
+## Helm Package Management
+
+The Kubernetes manifests have been converted into reusable Helm Charts.
+
+Helm provides:
+
+- Template-based Kubernetes manifests
+- Centralized configuration using values.yaml
+- Simplified deployments
+- Reusable application packaging
+- Easier upgrades and rollbacks
+
+Helm Commands:
+
+```bash
+helm lint helm/self-healing-platform
+helm template self-healing helm/self-healing-platform
+helm install self-healing helm/self-healing-platform
+helm upgrade self-healing helm/self-healing-platform
+helm rollback self-healing 1
+```
 
 ---
 
@@ -589,18 +646,18 @@ Responsibilities:
 - HTTP routing
 - Path-based routing
 - Reverse proxy
-- Centralized access management
+- Centralized traffic management
 
 Architecture:
 
-```
+```text
 Client
 
    │
 
    ▼
 
-Ingress Controller
+NGINX Ingress
 
    │
 
@@ -609,23 +666,34 @@ Ingress Controller
 User Service
 
 Product Service
-
-PostgreSQL
 ```
+
+---
+
+# ⚙️ GitHub Actions CI
+
+The project includes a GitHub Actions workflow for Continuous Integration.
+
+Current workflow performs:
+
+- Source code checkout
+- Python setup
+- Dependency installation
+- Automated workflow execution
+
+This establishes the foundation for future CI/CD automation.
 
 ---
 
 # 📊 Monitoring & Observability
 
-A production platform requires continuous monitoring to ensure application reliability.
-
-The project integrates Prometheus and Grafana to provide observability into Kubernetes workloads.
+Monitoring is implemented using Prometheus and Grafana to provide visibility into Kubernetes workloads.
 
 ---
 
 ## Prometheus
 
-Prometheus continuously collects metrics from the Kubernetes cluster.
+Prometheus continuously collects Kubernetes metrics.
 
 Collected Metrics:
 
@@ -633,40 +701,38 @@ Collected Metrics:
 - Service Availability
 - Cluster Metrics
 - Kubernetes Components
-- Resource Usage
+- Resource Utilization
 
 Benefits:
 
-- Centralized metrics
-- Time-series storage
+- Time-series metrics
 - Real-time monitoring
-- Production observability
+- Centralized metric collection
 
 ---
 
 ## Grafana
 
-Grafana visualizes Prometheus metrics through dashboards.
+Grafana visualizes Prometheus metrics using interactive dashboards.
 
 Implemented Dashboards:
 
-- Kubernetes Cluster Dashboard
+- Kubernetes Cluster Overview
 - Pod Metrics
 - Cluster Health
 - Application Monitoring
 
 Benefits:
 
-- Real-time dashboards
-- Interactive visualization
-- Infrastructure monitoring
-- Performance analysis
+- Real-time visualization
+- Performance monitoring
+- Infrastructure insights
 
 ---
 
 ## Monitoring Architecture
 
-```
+```text
 Kubernetes Cluster
 
         │
@@ -696,32 +762,17 @@ Dashboards
 
 ---
 
-## Observability Features
-
-The monitoring stack enables visibility into:
-
-- Running Pods
-- Kubernetes Deployments
-- Cluster Health
-- Replica Status
-- Service Status
-- Application Availability
-
----
-
 # ❤️ Kubernetes Self-Healing Demonstration
 
-One of the core objectives of this project was demonstrating Kubernetes' self-healing capabilities.
+One of the primary objectives of this project was to demonstrate Kubernetes' automatic self-healing capability.
 
-The application was deployed using Kubernetes Deployments with multiple replicas.
+The application was deployed with multiple replicas using Kubernetes Deployments.
 
 ---
 
 ## Demonstration
 
 A running User Service pod was manually deleted.
-
-Example:
 
 ```bash
 kubectl delete pod user-service-xxxxxxxx
@@ -731,12 +782,12 @@ kubectl delete pod user-service-xxxxxxxx
 
 ## Kubernetes Response
 
-Immediately after the pod deletion:
+Immediately after deletion:
 
 - Deployment detected the missing replica
-- ReplicaSet created a replacement pod
-- Kubernetes scheduled the new pod
-- Service availability remained intact
+- ReplicaSet created a replacement Pod
+- Kubernetes scheduled the new Pod
+- Service availability remained uninterrupted
 
 ---
 
@@ -750,7 +801,7 @@ kubectl get pods -w
 
 Observed lifecycle:
 
-```
+```text
 Running
 
 ↓
@@ -770,7 +821,7 @@ ContainerCreating
 Running
 ```
 
-This demonstrates Kubernetes' ability to automatically recover failed workloads without manual intervention.
+This demonstrates Kubernetes' built-in self-healing capability.
 
 ---
 
@@ -787,85 +838,27 @@ The implementation validates several production-grade Kubernetes capabilities:
 
 ---
 
-## Operational Workflow
-
-```
-Application Running
-
-        │
-
-Delete Pod
-
-        │
-
-        ▼
-
-Deployment Detects Failure
-
-        │
-
-        ▼
-
-ReplicaSet Creates New Pod
-
-        │
-
-        ▼
-
-Scheduler Assigns Node
-
-        │
-
-        ▼
-
-Container Starts
-
-        │
-
-        ▼
-
-Application Running Again
-```
-
----
-
-## Production Readiness Highlights
-
-This platform incorporates several production-inspired engineering practices:
-
-- Independent Microservices
-- Stateless Application Design
-- Containerized Deployment
-- Kubernetes Orchestration
-- Declarative Infrastructure
-- Configuration Externalization
-- Secret Management
-- Internal Service Discovery
-- Health Monitoring
-- Real-Time Observability
-- Self-Healing Workloads
-- Multi-Replica Deployments
-- Centralized Ingress Routing
-
-These capabilities collectively provide a strong foundation for cloud-native application deployment and are designed to be extended with CI/CD automation, GitOps workflows, and cloud infrastructure provisioning.
 # 🏗️ Project Architecture
 
-The Self-Healing GitOps Platform follows a cloud-native microservices architecture built with Kubernetes, GitOps, monitoring, and automated self-healing.
+The platform follows a production-inspired cloud-native architecture using Docker, Kubernetes, Helm, GitHub Actions, Argo CD, Prometheus, and Grafana.
 
 ## Architecture Diagram
 
-<img width="1536" height="1024" alt="00-architecture-diagram" src="https://github.com/user-attachments/assets/2b60624e-fa99-47fa-9447-4c48d8fec25a" />
+![Architecture](docs/00-architecture-diagram.png)
 
+---
 
-### Architecture Highlights
+## Architecture Highlights
 
-- 🌐 NGINX Ingress routes external traffic to microservices.
-- 👤 User Service manages user-related APIs.
-- 📦 Product Service manages product-related APIs.
-- 🐘 PostgreSQL provides persistent database storage.
-- ☸️ Kubernetes orchestrates and manages containers.
-- 📊 Prometheus collects application and cluster metrics.
-- 📈 Grafana visualizes metrics with real-time dashboards.
-- 🚨 Alertmanager handles alert routing and notifications.
-- 🔄 GitHub + GitOps continuously synchronize Kubernetes manifests.
-- ♻️ Kubernetes automatically recreates failed pods for self-healing.
+- 🌐 NGINX Ingress routes external traffic to application services.
+- 👤 User Service exposes user management APIs.
+- 📦 Product Service exposes product management APIs.
+- 🐘 PostgreSQL provides persistent relational data storage.
+- 🐳 Docker packages each microservice into lightweight containers.
+- ☸️ Kubernetes orchestrates workloads and manages scaling.
+- 📦 Helm packages Kubernetes manifests into reusable deployment templates.
+- ⚙️ GitHub Actions automates Continuous Integration workflows.
+- 🔄 Argo CD enables GitOps-ready application deployment.
+- 📊 Prometheus collects Kubernetes and application metrics.
+- 📈 Grafana visualizes operational dashboards.
+- ❤️ Kubernetes automatically recreates failed Pods to provide self-healing.
